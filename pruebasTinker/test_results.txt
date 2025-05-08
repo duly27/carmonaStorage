@@ -1,0 +1,92 @@
+=== Resultados de las pruebas ===
+
+Creando usuario admin...
+Array
+(
+    [status] => success
+    [message] => Usuario admin creado con éxito.
+    [user] => Array
+        (
+            [name] => Admin User
+            [email] => admin@example.com
+            [role] => admin
+        )
+
+)
+
+Ejecutando prueba de roles...
+Array
+(
+    [hasAdminRole] => 1
+    [hasManagerRole] => 
+    [hasAnyRole] => 1
+)
+
+Ejecutando prueba de roles para todos los usuarios...
+Usuario con rol admin eliminado.
+Array
+(
+    [admin] => Array
+        (
+            [hasRole] => 1
+            [hasAnyRole] => 1
+        )
+
+    [manager] => Array
+        (
+            [hasRole] => 1
+            [hasAnyRole] => 1
+        )
+
+    [employee] => Array
+        (
+            [hasRole] => 1
+            [hasAnyRole] => 1
+        )
+
+    [custom] => Array
+        (
+            [hasRole] => 1
+            [hasAnyRole] => 1
+        )
+
+)
+
+Ejecutando prueba de autenticación con tokens...
+Usuario admin creado para la prueba de tokens.
+Array
+(
+    [token] => 1|7ywkAbemPJIF8H8YX3hsUppOomVRPppiWqVRNb4ke2b6c9bd
+)
+
+Ejecutando prueba de cierre de sesión...
+Error: Session store not set on request.
+
+Ejecutando prueba de validaciones en el registro...
+stdClass Object
+(
+    [errors] => stdClass Object
+        (
+            [email] => Array
+                (
+                    [0] => The email has already been taken.
+                )
+
+        )
+
+)
+
+Ejecutando prueba de eliminación de usuarios...
+Array
+(
+    [message] => Usuario no encontrado.
+)
+
+Ejecutando prueba de actualización de usuarios...
+Array
+(
+    [message] => Usuario no encontrado.
+    [user] => 
+)
+
+=== Fin de las pruebas ===
