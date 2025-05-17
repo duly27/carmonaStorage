@@ -1,5 +1,18 @@
+@if (!Auth::check())
+    <script>
+        window.location.href = '{{ route('showlogin') }}';  // Redirige al login si no está autenticado
+    </script>
+@endif
+
 @extends('layout.app')
+
 @section('content')
+<head>
+    <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, post-check=0, pre-check=0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+</head>
+
 <div class="container mt-5">
     <h2 class="text-center text-success">
         Bienvenido, {{ Auth::user()->name }}

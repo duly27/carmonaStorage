@@ -10,9 +10,7 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
-    /**
-     * Registrar un nuevo usuario.
-     */
+    // Registro de nuevo usuario
     public function register(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -29,7 +27,7 @@ class AuthController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'role' => 'user',
+            'role' => 'user', // Asignamos un rol por defecto
         ]);
 
         $token = $user->createToken('YourAppName')->plainTextToken;
@@ -41,52 +39,44 @@ class AuthController extends Controller
         ], 201);
     }
 
-    /**
-     * Iniciar sesión de un usuario.
-     */
+    // Iniciar sesión
     public function login(Request $request)
     {
-        // Validar los datos del formulario
         $credentials = $request->validate([
-            'username' => 'required|string',
+            'email' => 'required|string|email',
             'password' => 'required|string',
         ]);
 
-        // Intentar autenticar al usuario
-        if (!Auth::attempt(['name' => $credentials['username'], 'password' => $credentials['password']])) {
+        if (!Auth::attempt($credentials)) {
             return redirect()->back()->with('error', 'Credenciales incorrectas.');
         }
 
-        // Regenerar la sesión para evitar ataques de fijación de sesión
         $request->session()->regenerate();
 
-        // Redirigir al usuario a la página principal
         return redirect()->route('user_page')->with('success', 'Inicio de sesión exitoso.');
     }
 
-    /**
-     * Muestra la página del usuario autenticado.
-     */
+    // Mostrar página principal de usuario
+    // AuthController.php
     public function showUserPage()
     {
+        if (!Auth::check()) {
+            return redirect()->route('showlogin');
+        }
         return view('user_page');
     }
 
-    /**
-     * Cerrar sesión del usuario autenticado.
-     */
+    // Cerrar sesión
     public function logout(Request $request)
     {
-        // Cierra la sesión del usuario
+        // Cerrar sesión
         Auth::logout();
 
-        // Invalida la sesión actual
+        // Invalidar la sesión y regenerar el token
         $request->session()->invalidate();
-
-        // Regenera el token de la sesión
         $request->session()->regenerateToken();
 
-        // Redirige al formulario de login
-        return redirect()->route('showlogin');
+        // Redirigir a la página de inicio (index) o login
+        return redirect()->route('index'); // O usa 'showlogin' si prefieres ir a la página de login
     }
 }

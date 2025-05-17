@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -14,6 +13,11 @@ class LoginController extends Controller
      */
     public function showLogin()
     {
+        // Si el usuario ya está autenticado, redirigir al user_page
+        if (Auth::check()) {
+            return redirect()->route('user_page');
+        }
+
         return view('login'); // Asegúrate de que la vista 'login.blade.php' exista
     }
 
@@ -32,6 +36,4 @@ class LoginController extends Controller
         auth()->guard()->logout();
         return redirect('/'); // Redirige a la página de inicio después de cerrar sesión
     }
-
-
 }

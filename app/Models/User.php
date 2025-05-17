@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -12,36 +11,18 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable, HasApiTokens;
 
-    /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable;
-
-    /**
-     * Los atributos que se pueden asignar masivamente.
-     *
-     * @var array
-     */
     protected $fillable = [
         'name',
         'email',
         'password',
-        'role', // Asegúrate de incluir el campo 'role'
+        'role', // Campo de rol
     ];
 
-    /**
-     * Los atributos que deben estar ocultos para los arrays.
-     *
-     * @var array
-     */
     protected $hidden = [
         'password',
         'remember_token',
     ];
 
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
     protected function casts(): array
     {
         return [
@@ -50,10 +31,7 @@ class User extends Authenticatable
         ];
     }
 
-    /**
-     * agregamos los roles de los usuarios
-     */
-
+    // Métodos para verificar roles
     public function hasRole($role)
     {
         return $this->role === $role;
@@ -63,29 +41,4 @@ class User extends Authenticatable
     {
         return in_array($this->role, $roles);
     }
-
-    public function deleteUser()
-    {
-        return $this->delete();
-    }
-
-    /**
-     * Crea un usuario si no existe.
-     *
-     * @param array $data
-     * @return User|null
-     */
-    public static function createIfNotExists(array $data)
-    {
-        // Verifica si el usuario ya existe
-        $user = self::where('email', $data['email'])->first();
-
-        if ($user) {
-            return null; // Retorna null si el usuario ya existe
-        }
-
-        // Crea y retorna el usuario si no existe
-        return self::create($data);
-    }
-
 }
