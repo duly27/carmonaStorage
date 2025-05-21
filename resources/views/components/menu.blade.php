@@ -5,25 +5,22 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="{{ route('index') }}">Inicio</a>
-                </li>
-
                 @if (Auth::check())
                     <li class="nav-item">
                         <a class="nav-link text-white" href="{{ route('productos.index') }}">Productos</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="{{ route('pedidos.index') }}">Pedidos</a>
+                    </li>
                     @if (Auth::user()->hasRole('Admin'))
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="{{ route('productos.create') }}">Alta Producto</a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link text-white" href="{{ route('empleados.index') }}">Empleados</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-white" href="{{ route('empleados.create') }}">Alta Empleado</a>
-                        </li>
-                    @endif
-                    @if (Auth::user()->hasRole('Gerente'))
-                        <li class="nav-item">
-                            <a class="nav-link text-white" href="{{ route('pedidos.index') }}">Pedidos</a>
                         </li>
                     @endif
                     @if (Auth::user()->hasRole('Vendedor'))
@@ -46,3 +43,4 @@
         </div>
     </div>
 </nav>
+

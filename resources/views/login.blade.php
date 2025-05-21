@@ -6,7 +6,7 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
 </head>
-<div class="container mt-5">
+<div class="container ">
     <h2 class="text-success">Iniciar Sesión</h2>
     <form method="POST" action="{{ route('loginuser') }}">
         @csrf

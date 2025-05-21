@@ -12,10 +12,15 @@ class EmpleadoController extends Controller
     /**
      * Mostrar listado de empleados
      */
-    public function index()
+    public function index(Request $request)
     {
-        $empleados = Empleado::all();
-        return view('empleados', compact('empleados'));
+        $busqueda = $request->input('busqueda');
+        $empleados = Empleado::when($busqueda, function ($query, $busqueda) {
+            return $query->where('nombre', 'like', "%$busqueda%")
+                         ->orWhere('puesto', 'like', "%$busqueda%");
+        })->paginate(10);
+
+        return view('empleados', compact('empleados', 'busqueda'));
     }
 
     /**

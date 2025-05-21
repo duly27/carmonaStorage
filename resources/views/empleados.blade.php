@@ -1,8 +1,14 @@
 @extends('layout.app')
 
 @section('content')
-<div class="container mt-5">
+<div class="container ">
     <h2 class="text-center text-primary">Listado de Empleados</h2>
+    <form method="GET" action="{{ route('empleados.index') }}" class="mb-3">
+        <div class="input-group">
+            <input type="text" name="busqueda" class="form-control" placeholder="Buscar por nombre o puesto..." value="{{ $busqueda ?? '' }}">
+            <button class="btn btn-primary" type="submit">Buscar</button>
+        </div>
+    </form>
     <main>
         <div class="table-responsive mt-4">
             <table class="table table-bordered table-striped table-hover">
@@ -36,6 +42,9 @@
                     @endforeach
                 </tbody>
             </table>
+        </div>
+        <div class="pagination-wrapper">
+            {{ $empleados->links() }}
         </div>
     </main>
 </div>

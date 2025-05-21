@@ -1,28 +1,33 @@
 @extends('layout.app')
+
 @section('content')
-<div class="container mt-5">
-    <h2 class="text-center text-primary">Registrar Nuevo Producto</h2>
-    <main>
-        <form action="{{ route('productos.store') }}" method="POST">
-            @csrf
-            <div class="mb-3">
-                <label for="name" class="form-label">Nombre del Producto</label>
-                <input type="text" class="form-control" id="name" name="name" required>
-            </div>
-            <div class="mb-3">
-                <label for="category" class="form-label">Categoría</label>
-                <input type="text" class="form-control" id="category" name="category" required>
-            </div>
-            <div class="mb-3">
-                <label for="price" class="form-label">Precio</label>
-                <input type="number" class="form-control" id="price" name="price" step="0.01" required>
-            </div>
-            <div class="mb-3">
-                <label for="stock" class="form-label">Stock</label>
-                <input type="number" class="form-control" id="stock" name="stock" required>
-            </div>
-            <button type="submit" class="btn btn-success">Registrar</button>
-        </form>
-    </main>
+<div class="container ">
+    <h2 class="text-center text-primary">Alta de Producto</h2>
+    <form action="{{ route('productos.store') }}" method="POST">
+        @csrf
+
+        <div class="form-group">
+            <label for="nombre">Nombre:</label>
+            <input type="text" class="form-control" id="nombre" name="nombre" required>
+        </div>
+
+        <div class="form-group">
+            <label for="descripcion">Descripción:</label>
+            <input type="text" class="form-control" id="descripcion" name="descripcion" required>
+        </div>
+
+        <div class="form-group">
+            <label for="precio">Precio:</label>
+            <input type="number" class="form-control" id="precio" name="precio" required min="0" step="0.01">
+        </div>
+
+        <div class="form-group">
+            <label for="stock">Stock:</label>
+            <input type="number" class="form-control" id="stock" name="stock" required min="0">
+        </div>
+
+        <button type="submit" class="btn btn-success">Guardar</button>
+        <a href="{{ route('productos.index') }}" class="btn btn-secondary">Volver al listado</a>
+    </form>
 </div>
 @endsection

@@ -13,7 +13,7 @@
     <meta http-equiv="Expires" content="0">
 </head>
 
-<div class="container mt-5">
+<div class="container ">
     <h2 class="text-center text-success">
         Bienvenido, {{ Auth::user()->name }}
     </h2>

@@ -15,7 +15,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'role', // Campo de rol
+        'role',
     ];
 
     protected $hidden = [
@@ -23,22 +23,18 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-    protected function casts(): array
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+        'password' => 'hashed',
+    ];
+
+    public function hasAnyRole(array $roles): bool
     {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-        ];
+        return in_array($this->role, $roles);
     }
 
-    // Métodos para verificar roles
     public function hasRole($role)
     {
         return $this->role === $role;
-    }
-
-    public function hasAnyRole(array $roles)
-    {
-        return in_array($this->role, $roles);
     }
 }

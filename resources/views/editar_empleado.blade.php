@@ -1,7 +1,7 @@
 @extends('layout.app')
 
 @section('content')
-<div class="container mt-5">
+<div class="container">
     <h2 class="text-center text-primary">Editar Empleado</h2>
     <form action="{{ route('empleados.update', $empleado->id) }}" method="POST">
         @csrf
@@ -37,7 +37,3 @@
     </form>
 </div>
 @endsection
-<!-- Este archivo es una vista de Blade que permite editar la información de un empleado existente.
-     Se utiliza el método PUT para actualizar los datos en la base de datos.
-     Se incluyen campos para nombre, email, teléfono, dirección y puesto,
-     y se muestra un botón para enviar el formulario y otro para cancelar la edición. -->

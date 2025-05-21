@@ -4,7 +4,7 @@
     <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-
+    <link rel="icon" href="{{ asset('images/icono.gif') }}" type="image/png">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,33 +21,59 @@
         });
     </script>
     <style>
+        header{
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
         html, body {
             height: 100%;
             margin: 0;
+            margin-top: 2.5%;
+
         }
 
         #principal {
-            min-height: 100vh;
+            min-height:100dvh;
             display: flex;
             flex-direction: column;
         }
 
         #container {
+            height: 100%;
             flex: 1;
             display: flex;
             justify-content: center;
             align-items: center;
-            padding-bottom: 200px; /* Añadido para evitar que el contenido se oculte detrás del footer */
+
         }
 
         footer {
-            position: fixed;
-            bottom: 0;
             width: 100%;
             background-color: #343a40;
             color: white;
             text-align: center;
             padding: 10px 0;
+        }
+
+        .pagination-wrapper nav > div:first-child {
+            display: flex;
+            gap: 4px;
+            justify-content: center;
+        }
+
+        .pagination-wrapper nav a,
+        .pagination-wrapper nav span {
+            font-size: 0.8rem;
+            padding: 4px 8px;
+            border-radius: 4px;
+            background: #eee;
+        }
+
+        nav svg {
+            width: 12px;
+            height: 12px;
         }
 
     </style>

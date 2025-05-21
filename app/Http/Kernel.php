@@ -6,12 +6,22 @@ use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
 {
-    // Middleware globales, déjalo vacío o pon lo básico
+    /**
+     * Middleware globales
+     */
     protected $middleware = [
-        // puedes dejar vacío si quieres
+
+        // \App\Http\Middleware\TrustProxies::class,
+        // \Fruitcake\Cors\HandleCors::class,
+        // \App\Http\Middleware\PreventRequestsDuringMaintenance::class,
+        // \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
+        // \App\Http\Middleware\TrimStrings::class,
+        // \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
     ];
 
-    // Grupos de middleware
+    /**
+     * Grupos de middleware
+     */
     protected $middlewareGroups = [
         'web' => [
             \Illuminate\Session\Middleware\StartSession::class,
@@ -26,11 +36,14 @@ class Kernel extends HttpKernel
         ],
     ];
 
-    // Middleware que se pueden usar con alias en rutas
+    /**
+     * Alias de middleware para usar en rutas
+     */
     protected $routeMiddleware = [
-        'auth' => \App\Http\Middleware\Authenticate::class,
-        'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
-        'no.back' => \App\Http\Middleware\NoBackMiddleware::class,
-        'role' => \App\Http\Middleware\CheckRole::class,
-    ];
+    'auth' => \App\Http\Middleware\Authenticate::class,
+    'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
+    'noback' => \App\Http\Middleware\NoBackMiddleware::class,
+    'checkrole' => \App\Http\Middleware\CheckRole::class,
+];
+
 }

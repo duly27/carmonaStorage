@@ -1,7 +1,7 @@
 @extends('layout.app')
 
 @section('content')
-<div class="container mt-5">
+<div class="container ">
     <h2 class="text-center text-primary">Alta de Empleado</h2>
     <form action="{{ route('empleados.store') }}" method="POST">
         @csrf  <!-- Protección contra CSRF -->

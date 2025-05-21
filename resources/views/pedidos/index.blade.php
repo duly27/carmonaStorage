@@ -1,3 +1,4 @@
+{{-- filepath: c:\Users\LemOwO\carmonaStorage\almacen\resources\views\pedidos\index.blade.php --}}
 @extends('layout.app')
 @section('content')
 <div class="container">
